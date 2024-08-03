@@ -478,8 +478,8 @@ contract UpVsDownGameV2 is Ownable {
   function sendEther (
     address to, 
     uint256 amount
-  ) private returns (bool) {
+  ) private {
     (bool sent, bytes memory data) = payable(to).call{gas: 0, value: amount}("");
-    return sent;
+    require(sent, "Couldn't send ether");
   } 
 }
